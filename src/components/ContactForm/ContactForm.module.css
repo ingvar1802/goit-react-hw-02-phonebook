@@ -11,7 +11,7 @@
 }
 
 .label {
-  ddisplay: inline-block;
+  display: inline-block;
   margin-bottom: 16px;
   font-size: 20px;
   color: #171718;

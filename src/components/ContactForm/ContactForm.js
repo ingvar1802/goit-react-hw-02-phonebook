@@ -12,29 +12,24 @@ class ContactForm extends Component {
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
   };
 
-  contactMatching = () => {
+  contactChek = () => {
     const { name, number } = this.state;
     const { contacts } = this.props;
-    const namesInPhonebook = contacts.reduce(
+    const namesIsIn = contacts.reduce(
       (acc, contact) => [...acc, contact.name],
       [],
     );
-    const numbersInPhonebook = contacts.reduce(
+    const numbersIsIn = contacts.reduce(
       (acc, contact) => [...acc, contact.number],
       [],
     );
 
-    if (
-      namesInPhonebook.includes(name) ||
-      numbersInPhonebook.includes(number)
-    ) {
+    if (namesIsIn.includes(name) || numbersIsIn.includes(number)) {
       alert(`${name}${number} is already in contacts`);
-      return true;
     }
 
     if (name === '' || number === '') {
-      alert('Please enter all data');
-      return true;
+      alert('Enter all data, please');
     }
   };
 
@@ -43,7 +38,7 @@ class ContactForm extends Component {
 
     e.preventDefault();
     this.setState({ name: '', number: '' });
-    if (this.contactMatching()) {
+    if (this.contactChek()) {
       return;
     }
 
@@ -54,7 +49,7 @@ class ContactForm extends Component {
     return (
       <form onSubmit={this.handleSubmit} className={s.form}>
         <label className={s.label}>
-          Name
+          Name:
           <input
             type="text"
             name="name"
@@ -66,7 +61,7 @@ class ContactForm extends Component {
         </label>
 
         <label className={s.label}>
-          Number
+          Number:
           <input
             type="tel"
             name="number"
